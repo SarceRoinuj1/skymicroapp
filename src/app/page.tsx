@@ -21,9 +21,10 @@ export default function Home() {
           Time Value Calculator
         </h1>
 
-        <p className="text-sm text-zinc-400 text-center">
-          See how small investments grow over time.
-        </p>
+       <p className="text-sm text-zinc-400 text-center">
+        See how small investments grow over time.
+       </p>
+
 
         <div className="space-y-3">
           <label className="block text-sm">
@@ -63,6 +64,17 @@ export default function Home() {
             ${futureValue.toFixed(2)}
           </p>
         </div>
+        <button
+  onClick={() => {
+    setMonthly(100);
+    setYears(10);
+    setRate(8);
+  }}
+  className="w-full mt-3 p-2 rounded bg-zinc-800 text-sm hover:bg-zinc-700"
+>
+  Reset values
+</button>
+
       </div>
     </main>
   );
