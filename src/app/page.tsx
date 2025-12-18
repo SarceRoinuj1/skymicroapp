@@ -5,6 +5,8 @@ import { useState } from "react";
 export default function Home() {
   const [monthly, setMonthly] = useState(100);
   const [years, setYears] = useState(10);
+  const FREE_LIMIT = 10;
+
   const [rate, setRate] = useState(8);
 
   const months = years * 12;
@@ -38,14 +40,23 @@ export default function Home() {
           </label>
 
           <label className="block text-sm">
-            Years
-            <input
-              type="number"
-              value={years}
-              onChange={(e) => setYears(+e.target.value)}
-              className="w-full mt-1 p-2 rounded bg-zinc-800"
-            />
-          </label>
+           Years (Free up to {FREE_LIMIT})
+           <input
+             type="number"
+             value={years}
+             onChange={(e) => {
+               const value = +e.target.value;
+               if (value <= FREE_LIMIT) setYears(value);
+             }}
+             className="w-full mt-1 p-2 rounded bg-zinc-800"
+           />
+         </label>
+          {years >= FREE_LIMIT && (
+  <p className="text-xs text-amber-400 mt-1 text-center">
+    Upgrade to Pro to unlock unlimited years 🚀
+  </p>
+)}
+
 
           <label className="block text-sm">
             Annual Interest (%)
@@ -72,6 +83,9 @@ export default function Home() {
   }}
   className="w-full mt-3 p-2 rounded bg-zinc-800 text-sm hover:bg-zinc-700"
 >
+<div className="mt-4 p-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-black text-sm text-center">
+  <strong>Pro version:</strong> unlimited years, deeper insights, export results.
+</div>
   Reset values
 </button>
 
