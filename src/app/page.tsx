@@ -6,6 +6,7 @@ export default function Home() {
   const [monthly, setMonthly] = useState(100);
   const [years, setYears] = useState(10);
   const FREE_LIMIT = 10;
+  const [isPro, setIsPro] = useState(false);
 
   const [rate, setRate] = useState(8);
 
@@ -22,6 +23,11 @@ export default function Home() {
         <h1 className="text-2xl font-bold text-center">
           Time Value Calculator
         </h1>
+{isPro && (
+  <p className="text-xs text-emerald-400 text-center">
+    Pro mode enabled ✓
+  </p>
+)}
 
        <p className="text-sm text-zinc-400 text-center">
         See how small investments grow over time.
@@ -46,7 +52,7 @@ export default function Home() {
              value={years}
              onChange={(e) => {
                const value = +e.target.value;
-               if (value <= FREE_LIMIT) setYears(value);
+               if (isPro || value <= FREE_LIMIT) setYears(value);
              }}
              className="w-full mt-1 p-2 rounded bg-zinc-800"
            />
@@ -86,6 +92,13 @@ export default function Home() {
 <div className="mt-4 p-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-black text-sm text-center">
   <strong>Pro version:</strong> unlimited years, deeper insights, export results.
 </div>
+<button
+  onClick={() => setIsPro(true)}
+  className="w-full mt-2 p-2 rounded bg-emerald-500 text-black text-sm font-semibold hover:bg-emerald-400"
+>
+  Unlock Pro (demo)
+</button>
+
   Reset values
 </button>
 
