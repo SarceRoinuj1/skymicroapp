@@ -12,6 +12,7 @@ export default function Home() {
 
   const months = years * 12;
   const monthlyRate = rate / 100 / 12;
+  const totalInvested = monthly * months;
 
   const futureValue =
     monthly *
@@ -80,6 +81,10 @@ export default function Home() {
           <p className="text-2xl font-bold text-emerald-400">
             ${futureValue.toFixed(2)}
           </p>
+       <p className="text-xs text-zinc-400 mt-1">
+  You invested ${totalInvested.toFixed(2)}
+</p>
+
         </div>
         <button
   onClick={() => {
